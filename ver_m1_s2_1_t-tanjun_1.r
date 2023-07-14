@@ -2,11 +2,11 @@
 # haruno
 # df_h：haruno全体のデータ、分娩腹数0も含む
 # df_haru：harunoの分娩腹数1のみのデータ
-# ton_h_l, ton_h_w：df_hから品種L、Wを抜粋したデータ
+# df_h_l, df_h_w：df_hから品種L、Wを抜粋したデータ
 
 # 母豚数
-boton_hL <- length(unique(ton_h_l$メスNo.))
-boton_hW <- length(unique(ton_h_w$メスNo.))
+boton_hL <- length(unique(df_h_l$メスNo.))
+boton_hW <- length(unique(df_h_w$メスNo.))
 boton_h <- length(unique(df_h$メスNo.))
 boton_H <- c(boton_hL, boton_hW, boton_h)
 
@@ -17,7 +17,7 @@ kouhai_H <- c(kouhai_h$メスNo.[1, 1], kouhai_h$メスNo.[2, 1],length(df_h[, 1
 # 分娩腹数
 bunben_h <- aggregate(交配腹数 == "1"~品種, data = haruno_y, FUN = sum)
 names(bunben_h) <- c("品種", "分娩腹数")
-bunben_H <- c(bunben_h$分娩腹数, length(df_haru))
+bunben_H <- c(bunben_h$分娩腹数, length(df_haru[,1]))
 
 # 分娩率
 per_bunben_h <- aggregate(分娩腹数 != "0"~品種, data = df_h, FUN = mean)
@@ -30,8 +30,8 @@ one_bunben_H <- c(one_bunben_h$一度で成功, sum(one_bunben_h$一度で成功
 
 
 # 産次別交配腹数
-kouhai_san_hL <- aggregate(交配腹数 == "1"~産次, data = ton_h_l, FUN = sum)
-kouhai_san_hW <- aggregate(交配腹数 == "1"~産次, data = ton_h_w, FUN = sum)
+kouhai_san_hL <- aggregate(交配腹数 == "1"~産次, data = df_h_l, FUN = sum)
+kouhai_san_hW <- aggregate(交配腹数 == "1"~産次, data = df_h_w, FUN = sum)
 kouhai_san_h <- aggregate(交配腹数 == "1"~産次, data = df_h, FUN = sum)
 names(kouhai_san_hL) <- c("品種", "交配腹数")
 names(kouhai_san_hW) <- c("品種", "交配腹数")
@@ -39,8 +39,8 @@ names(kouhai_san_h) <- c("品種", "交配腹数")
 
 
 # 産次別分娩腹数
-bunben_san_hL <- aggregate(分娩腹数 != "0"~産次, data = ton_h_l, FUN = sum)
-bunben_san_hW <- aggregate(分娩腹数 != "0"~産次, data = ton_h_w, FUN = sum)
+bunben_san_hL <- aggregate(分娩腹数 != "0"~産次, data = df_h_l, FUN = sum)
+bunben_san_hW <- aggregate(分娩腹数 != "0"~産次, data = df_h_w, FUN = sum)
 bunben_san_h <- aggregate(交配腹数 == "1"~産次, data = haruno_y, FUN = sum)
 names(bunben_san_hL) <- c("品種", "分娩腹数")
 names(bunben_san_hW) <- c("品種", "分娩腹数")
@@ -108,11 +108,11 @@ aggregate(交配回数>2~品種, data = df_h, FUN = sum)
 # tirol
 # df_t：tirol全体のデータ、分娩腹数0も含む
 # df_tir：tirolの分娩腹数1のみのデータ
-# ton_t_l, ton_t_w：df_tから品種L、Wを抜粋したデータ
+# df_t_l, df_t_w：df_tから品種L、Wを抜粋したデータ
 
 # 母豚数
-boton_tL <- length(unique(ton_t_l$メスNo.))
-boton_tW <- length(unique(ton_t_w$メスNo.))
+boton_tL <- length(unique(df_t_l$メスNo.))
+boton_tW <- length(unique(df_t_w$メスNo.))
 boton_t <- length(unique(df_t$メスNo.))
 boton_T <- c(boton_tL, boton_tW, boton_t)
 
@@ -123,7 +123,7 @@ kouhai_T <- c(kouhai_t$メスNo.[1, 1], kouhai_t$メスNo.[2, 1],length(df_t[, 1
 # 分娩腹数
 bunben_t <- aggregate(交配腹数 == "1"~品種, data = tirol_y, FUN = sum)
 names(bunben_t) <- c("品種", "分娩腹数")
-bunben_T <- c(bunben_t$分娩腹数, length(df_tir))
+bunben_T <- c(bunben_t$分娩腹数, length(df_tir[,1]))
 
 # 分娩率
 per_bunben_t <- aggregate(分娩腹数 != "0"~品種, data = df_t, FUN = mean)
@@ -136,8 +136,8 @@ one_bunben_T <- c(one_bunben_t$一度で成功, sum(one_bunben_t$一度で成功
 
 
 # 産次別交配腹数
-kouhai_san_tL <- aggregate(交配腹数 == "1"~産次, data = ton_t_l, FUN = sum)
-kouhai_san_tW <- aggregate(交配腹数 == "1"~産次, data = ton_t_w, FUN = sum)
+kouhai_san_tL <- aggregate(交配腹数 == "1"~産次, data = df_t_l, FUN = sum)
+kouhai_san_tW <- aggregate(交配腹数 == "1"~産次, data = df_t_w, FUN = sum)
 kouhai_san_t <- aggregate(交配腹数 == "1"~産次, data = df_t, FUN = sum)
 names(kouhai_san_tL) <- c("品種", "交配腹数")
 names(kouhai_san_tW) <- c("品種", "交配腹数")
@@ -145,8 +145,8 @@ names(kouhai_san_t) <- c("品種", "交配腹数")
 
 
 # 産次別分娩腹数
-bunben_san_tL <- aggregate(分娩腹数 != "0"~産次, data = ton_t_l, FUN = sum)
-bunben_san_tW <- aggregate(分娩腹数 != "0"~産次, data = ton_t_w, FUN = sum)
+bunben_san_tL <- aggregate(分娩腹数 != "0"~産次, data = df_t_l, FUN = sum)
+bunben_san_tW <- aggregate(分娩腹数 != "0"~産次, data = df_t_w, FUN = sum)
 bunben_san_t <- aggregate(交配腹数 == "1"~産次, data = tirol_y, FUN = sum)
 names(bunben_san_tL) <- c("品種", "分娩腹数")
 names(bunben_san_tW) <- c("品種", "分娩腹数")
