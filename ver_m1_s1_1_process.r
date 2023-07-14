@@ -48,8 +48,8 @@ haruno_y <- subset(haruno, 分娩腹数 == 1|分娩腹数 == 2)
 df_h <- haruno
 df_haru <- haruno_y
 
-ton_h_l <- subset(df_h, 品種 == "L")
-ton_h_w <- subset(df_h, 品種 == "W")
+df_h_l <- subset(df_h, 品種 == "L")
+df_h_w <- subset(df_h, 品種 == "W")
 
 # ここからtirol
 for(i in 1:length(tirol[,1])){
@@ -65,8 +65,8 @@ tirol_y <- subset(tirol, 分娩腹数 == 1|分娩腹数 == 2)
 df_t <- tirol
 df_tir <- tirol_y
 
-ton_t_l <- subset(df_t, 品種 == "L")
-ton_t_w <- subset(df_t, 品種 == "W")
+df_t_l <- subset(df_t, 品種 == "L")
+df_t_w <- subset(df_t, 品種 == "W")
 
 df_sc_haru <- scale(df_haru[32:48])
 df_sc_haru <- as.data.frame(df_sc_haru)
